@@ -12,7 +12,7 @@ async function loadShaderSource(url) {
 
 async function main() {
   const vsSource = await loadShaderSource("vertex.glsl");
-  const fsSource = await loadShaderSource("fragment.glsl");
+  const fsSource = await loadShaderSource("fragment.glsl.frag");
 
   // Compile shaders
   function createShader(gl, type, source) {
