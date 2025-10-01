@@ -52,7 +52,9 @@ gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
 gl.vertexAttribPointer(posLoc, 3, gl.FLOAT, false, 0, 0);
 
 // ---- Uniform ----
-const uMVP = gl.getUniformLocation(program, "u_modelViewProjection");
+const uModel = gl.getUniformLocation(program, "u_modelMatrix");
+const uView = gl.getUniformLocation(program, "u_viewMatrix");
+const uProjection = gl.getUniformLocation(program, "u_projectionMatrix");
 
 // ---- Enable depth ----
 gl.enable(gl.DEPTH_TEST);
@@ -76,12 +78,10 @@ function render(time) {
     mat4.rotateY(model, model, time * 0.001);
     mat4.rotateX(model, model, time * 0.0007);
 
-    // MVP
-    const mvp = mat4.create();
-    mat4.multiply(mvp, projection, view);
-    mat4.multiply(mvp, mvp, model);
-
-    gl.uniformMatrix4fv(uMVP, false, mvp);
+    // Sending uniforms
+    gl.uniformMatrix4fv(uProjection, false, projection);
+    gl.uniformMatrix4fv(uView, false, view);
+    gl.uniformMatrix4fv(uModel, false, model);
 
     // Draw
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
