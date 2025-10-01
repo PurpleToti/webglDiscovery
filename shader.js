@@ -26,8 +26,8 @@ gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
 gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, indices, gl.STATIC_DRAW);
 
 // ---- Shaders ----
-const vsSource = await (await fetch("vertex.glsl.vert")).text();
-const fsSource = await (await fetch("fragment.glsl.frag")).text();
+const vsSource = await (await fetch("vertex.glsl.vert", { cache: "no-store" })).text();
+const fsSource = await (await fetch("fragment.glsl.frag", { cache: "no-store" })).text();
 
 function compileShader(type, source) {
     const shader = gl.createShader(type);
