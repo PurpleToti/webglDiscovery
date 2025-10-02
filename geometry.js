@@ -7,6 +7,31 @@ export class Mesh {
     }
 }
 
+export class Triangle {
+    constructor(v1, v2, v3) {
+        this.v1 = v1;
+        this.v2 = v2;
+        this.v3 = v3;
+    }
+
+    fu
+}
+
+function subdivideTriangle(v1, v2, v3, index) {
+    var v4 = Vector3.Slerp(v1, v2, 0.5);  
+    var v5 = Vector3.Slerp(v2, v3, 0.5);  
+    var v6 = Vector3.Slerp(v3, v1, 0.5);
+    const triangles = [
+        0 + index, 3 + index, 5 + index,
+        3 + index, 4 + index, 5 + index,
+        4 + index, 2 + index, 5 + index,
+        3 + index, 1 + index, 4 + index
+    ];
+    const vertices = [
+        v1, v2, v3, v4, v5, v6
+    ]
+}
+
 export class Sphere extends Mesh {
     static baseIcosphereVertices = [
         vec3.fromValues(0.8506508,  0.5257311, 0.0), 
